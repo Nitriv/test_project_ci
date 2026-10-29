@@ -1,0 +1,16 @@
+# Базы данных
+*.db
+*.sqlite
+
+# Настройки IDE
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Тесты и кэш
+.pytest_cache/
