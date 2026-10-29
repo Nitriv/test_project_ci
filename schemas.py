@@ -3,11 +3,20 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class RecipeBookIn(BaseModel):
     """Схема для создания рецепта."""
-    title: str = Field(..., min_length=1, max_length=200,
-                       description="Название рецепта", examples=['Борщ'])
-    cooking_time: int = Field(..., gt=0, description="Время готовки в минутах", examples=[90])
+
+    title: str = Field(
+        ...,
+        min_length=1,
+        max_length=200,
+        description="Название рецепта",
+        examples=["Борщ"],
+    )
+    cooking_time: int = Field(
+        ..., gt=0, description="Время готовки в минутах", examples=[90]
+    )
     list_of_ingredients: list[str] = Field(
-        ..., min_length=1,
+        ...,
+        min_length=1,
         description="Список ингредиентов",
         examples=[["свёкла", "капуста", "говядина"]],
     )
@@ -19,10 +28,9 @@ class RecipeBookIn(BaseModel):
 
 class RecipeBookOut(BaseModel):
     """Схема ответа — краткая."""
-    id: int = Field(..., description='id рецепта')
-    title: str = Field(...,
-                       description="Название рецепта",
-                       examples=['Борщ'])
+
+    id: int = Field(..., description="id рецепта")
+    title: str = Field(..., description="Название рецепта", examples=["Борщ"])
     cooking_time: int = Field(..., description="Время готовки в минутах", examples=[90])
     number_of_views: int = Field(..., description="Кол-во просмотров данного рецепта")
 
@@ -31,6 +39,7 @@ class RecipeBookOut(BaseModel):
 
 class RecipeBookOutDetailed(RecipeBookOut):
     """Расширенная схема — все поля."""
+
     list_of_ingredients: list[str] = Field(
         ...,
         description="Список ингредиентов",
